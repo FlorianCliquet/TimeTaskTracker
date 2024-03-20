@@ -1,0 +1,33 @@
+{
+  "manifest_version" : 2,
+  "short_name" : "3T",
+  "name": "Task Time Tracker",
+  "description" : "Extension qui a pour but d'avoir une liste de tâche journalière ou non à faire, et qui permet de tracer le temps qu'on passe sur un site web en lien avec les tachês",
+  "version": "1.0",
+  "permissions" : [
+      "activeTab",
+      "storage",
+      "tabs"
+  ],
+  "browser_action" : {
+      "default_popup" : "index.html",
+      "default_icon": {
+          "16" : "icon16.png",
+          "32" : "icon32.png",
+          "128" : "icon128.png"
+      },
+      "commands" : {
+          "_execute_browser_action" : {
+              "suggested_key" : {
+                  "default" : "Ctrl+Shift+F",
+                  "mac" : "MacCtrl+Shift+F"
+              }
+          }
+      },
+      "icon": {
+          "16" : "icon16.png",
+          "32" : "icon32.png",
+          "128" : "icon128.png"
+      }
+  }
+}

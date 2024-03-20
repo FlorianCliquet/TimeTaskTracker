@@ -64,36 +64,33 @@ const Todo = () => {
     localStorage.setItem('tasks', JSON.stringify(items));
   }, [items]);
 
-// Logic to calculate and update task progress
+  // Logic to calcul time progress
   useEffect(() => {
     const intervalId = setInterval(() => {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (tabs[0]) {
           const currentUrl = tabs[0].url;
-      setItems((prevItems) => {
-        return prevItems.map((item) => {
-          if (item.progress < 100 && currentUrl.includes(item.URL)) {
-            // Parse the "HH:MM" format into minutes
-            const [hours, minutes] = item.time.split(':');
-            const totalTime = parseInt(hours) * 60 + parseInt(minutes);
-
-            // Calculate progress based on elapsed time in minutes
-            const elapsedTime = (new Date() - new Date(item.lastReset)) / (60 * 1000);
-            const newProgress = (Math.round((elapsedTime / totalTime) * 1000)/10);
-            item.progress = newProgress;
-          }
-          return item;
-        });
+          setItems((prevItems) => {
+            return prevItems.map((item) => {
+              if (item.progress < 100 && currentUrl.includes(item.URL)) {
+                // Increment progress every minute
+                const [hours, minutes] = item.time.split(':');
+                const totalTime = parseInt(hours) * 60 + parseInt(minutes);
+                item.progress += (1 / totalTime)*100;
+                const newProgress = Math.min(item.progress , 100);
+                return { ...item, progress: newProgress };
+              }
+              return item;
+            });
+          });
+        }
       });
-    }
-  });
-}, 1000);// Update progress every second
-
-    return () => {
-      clearInterval(intervalId); // Cleanup when component unmounts
-    };
+    }, 1000); // Update progress every seconds
+  
+    return () => clearInterval(intervalId); // Cleanup when component unmounts
   }, []);
-
+  
+  
   const handleInput = (e) => {
     const { name, value } = e.target;
     if (name === 'title') {
@@ -198,18 +195,19 @@ const Todo = () => {
     <>
       {showNewItem && (
         <div className='first'>
-              <div className='new-button-first'>
-                <div className='col-12 text-end'>
-                  <button className='btn btn-primary' onClick={handleAdd}>
-                    New Task
-                  </button>
-                </div>
-              </div>
+          <div className='new-button-first'>
+            <div className='col-12 text-end'>
+              <button className='btn btn-primary' onClick={handleAdd}>
+                New Task
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
       {showForm && (
-        <div className='container border rounded d-flex justify-content-center shadow p-3 mb-5 bg-white'>
+        <div className='container border rounded d-flex justify-content-center shadow p-3 mb
+        -5 bg-white'>
           <div className='row'>
             <div className='col-12 text-center'>
               <h2>{toggleSubmit ? 'Add Task' : 'Edit Task'}</h2>
@@ -295,44 +293,44 @@ const Todo = () => {
           <p className='text-center text-success'>Item Updated Successfully</p>
         </div>
       )}
-    {items.length > 0 ? (
-      items.map((item) => (
-        <div
-          className='row border rounded shadow p-3 mb-3 bg-white'
-          key={item.id}
-        >
-          <div className='container border rounded d-flex justify-content-center shadow p-3 mb-5 bg-white text-center'>
-            <div>
-              <h4>{item.name}</h4>
-              <p>{item.desc}</p>
-              <p>Time: {item.time}</p>
-              <p>URL: {item.URL}</p>
-              <p>Frequency: {item.frequency}</p>
-              <p>Progress: {item.progress}%</p>
-            </div>
-            <div>
-              <button
-                className='btn btn-primary mx-2'
-                onClick={() => handleEdit(item.id)}
-              >
-                Edit
-              </button>
-              {showDelete && (
+
+      {items.length > 0 ? (
+        items.map((item) => (
+          <div
+            className='row border rounded shadow p-3 mb-3 bg-white'
+            key={item.id}
+          >
+            <div className='container border rounded d-flex justify-content-center shadow p-3 mb-5 bg-white text-center'>
+              <div>
+                <h4>{item.name}</h4>
+                <p>{item.desc}</p>
+                <p>Time: {item.time}</p>
+                <p>URL: {item.URL}</p>
+                <p>Frequency: {item.frequency}</p>
+                <p>Progress: {item.progress}%</p>
+              </div>
+              <div>
                 <button
-                  className='btn btn-danger mx-2'
-                  onClick={() => handleDelete(item.id)}
+                  className='btn btn-primary mx-2'
+                  onClick={() => handleEdit(item.id)}
                 >
-                  Delete
+                  Edit
                 </button>
-              )}
+                {showDelete && (
+                  <button
+                    className='btn btn-danger mx-2'
+                    onClick={() => handleDelete(item.id)}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))
-    ):(
-      <div className='text-center'>No task saved yet</div>
-    )
-    }
+        ))
+      ) : (
+        <div className='text-center'>No task saved yet</div>
+      )}
     </>
   );
 };
