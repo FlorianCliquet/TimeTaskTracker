@@ -1,0 +1,164 @@
+body {
+  width: 300px;  /* Largeur par défaut de la page */
+  height: 250px; /* Hauteur par défaut de la page */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Empêche le défilement si vous ne voulez pas de barres de défilement */
+}
+
+h4 {
+  font-size: 1.5rem; /* Cela rendra le titre plus grand que le texte normal */
+  margin-bottom: 2rem; /* Ajoutez un peu d'espace en dessous du titre si nécessaire */
+}
+
+p{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+h5{   
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+.second {
+  .container {
+    display: flex;  
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 300;  /* Largeur fixe pour la popup */
+    height: 15; /* Hauteur fixe pour la popup */
+    overflow-y: auto; /* Permet le défilement vertical si nécessaire */
+    margin: 0 auto; /* Centre la popup si plus petite que l'écran */
+    padding: 1rem; /* Espace intérieur pour le contenu */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Ombre pour une apparence moderne */
+    border-radius: 0.5rem; /* Arrondit les coins */
+    background-color: #fff; /* Couleur de fond */
+  }
+  
+}
+.container {
+  display: flex;  
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;  /* Largeur fixe pour la popup */
+  height: auto; /* Hauteur fixe pour la popup */
+  overflow-y: auto; /* Permet le défilement vertical si nécessaire */
+  margin: 0 auto; /* Centre la popup si plus petite que l'écran */
+  padding: 1rem; /* Espace intérieur pour le contenu */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Ombre pour une apparence moderne */
+  border-radius: 0.5rem; /* Arrondit les coins */
+  background-color: #fff; /* Couleur de fond */
+}
+
+.first{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto; /* Permet le défilement vertical si nécessaire */
+  margin: 0 auto; /* Centre la popup si plus petite que l'écran */
+  padding: 1rem; /* Espace intérieur pour le contenu */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Ombre pour une apparence moderne */
+  border-radius: 0.5rem; /* Arrondit les coins */
+  background-color: #fff; /* Couleur de fond */
+}
+
+.new-button-first {
+  padding: 0; /* Ajustez le padding si nécessaire */
+  width: 100%; /* Take the full width to center the button inside it */
+  display: flex;
+  justify-content: center; /* This will center the button */
+  margin: 0.5rem 0; /* Optional: adds margin above and below the button */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+input{
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+}
+
+button {
+  padding: 0.25rem 0.5rem;
+  width: auto; /* ou une largeur spécifique plus petite */
+  height: auto; /* ou une hauteur spécifique plus petite */
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-3 {
+  padding: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.mb-5 {
+  margin-bottom: 1rem;
+}
+
+.bg-white {
+  background-color: #fff;
+}
