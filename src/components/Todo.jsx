@@ -18,37 +18,47 @@ const Todo = () => {
     const storedTasks = localStorage.getItem('tasks');
     return storedTasks ? JSON.parse(storedTasks) : [];
   });
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const now = new Date();
-      const today = now.toISOString().split('T')[0]; // Format YYYY-MM-DD
-      const currentDayOfWeek = now.getDay(); // Dimanche = 0, ..., Samedi = 6
+      useEffect(() => {
+      const resetProgress = async () => {
+        const now = new Date();
+        const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0); // Tomorrow midnight
   
-      setItems((prevItems) => {
-        return prevItems.map((item) => {
-          const lastResetDate = new Date(item.lastReset);
-          const lastResetDay = lastResetDate.toISOString().split('T')[0];
-  
-          // Reset quotidien
-          if (item.frequency === 'daily' && lastResetDay !== today) {
-            item.progress = 0;
-            item.lastReset = now.toISOString();
+        const delay = Math.max(0, midnight.getTime() - now.getTime()); // Calculate delay (minimum 0)
+        const timeoutId = setTimeout(async () => {
+          try {
+            // Check if browser is online (optional)
+            const isOnline = await navigator.onLine;
+            if (isOnline) {
+              setItems((prevItems) =>
+                prevItems.map((item) => {
+                  if (item.frequency === 'daily' || item.frequency === 'weekly') {
+                    item.progress = 0;
+                  }
+                  return item;
+                })
+              );
+            } else {
+              console.log('Browser is offline, retrying reset in 30 minutes');
+              resetProgress(); // Retry after 30 minutes
+            }
+          } catch (error) {
+            console.error('Error resetting progress:', error);
           }
+        }, delay);
   
-          // Reset hebdomadaire
-          if (item.frequency === 'weekly' && currentDayOfWeek === 0 && lastResetDay !== today) {
-            item.progress = 0;
-            item.lastReset = now.toISOString();
-          }
+        return () => clearTimeout(timeoutId);
+      };
   
-          return item;
-        });
-      });
-    }, 3600000); // Vérifie toutes les heures
+      resetProgress();
   
-    return () => clearInterval(intervalId);
-  }, []);
+      // Run reset logic again every 24 hours
+      const intervalId = setInterval(resetProgress, 24 * 60 * 60 * 1000);
+  
+      return () => {
+        clearInterval(intervalId);
+      };
+    }, [items]);
+  
   
 
   // Chargement initial des tâches depuis le Local Storage
@@ -76,12 +86,12 @@ const Todo = () => {
                 // Increment progress every minute
                 const [hours, minutes] = item.time.split(':');
                 const totalTime = parseInt(hours) * 60 + parseInt(minutes);
-                item.progress += (1 / totalTime)*100;
-                const newProgress = Math.min(item.progress , 100);
+                item.progress += (1 / (totalTime*60))*100;
+		            const newProgress = Math.round(Math.min(item.progress, 100) * 1000) / 1000;
                 return { ...item, progress: newProgress };
               }
               return item;
-            });
+            }); 
           });
         }
       });
@@ -139,9 +149,10 @@ const Todo = () => {
         time: inputTime,
         URL: inputURL,
         frequency: taskFrequency,
-        lastReset: new Date().toISOString(),
-        progress: 0, // Champ de progression initialisé à 0
+        workingday: new Date().getDay(), // Set to the current day
+        progress: 0,
       };
+      
       setItems([newTask, ...items]);
     }
 
@@ -308,6 +319,7 @@ const Todo = () => {
                 <p>URL: {item.URL}</p>
                 <p>Frequency: {item.frequency}</p>
                 <p>Progress: {item.progress}%</p>
+                <p>Working Day : {item.workingday}</p>
               </div>
               <div>
                 <button
