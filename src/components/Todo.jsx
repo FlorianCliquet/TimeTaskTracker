@@ -77,28 +77,26 @@ const Todo = () => {
   // Logic to calcul time progress
   useEffect(() => {
     const intervalId = setInterval(() => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0]) {
-          const currentUrl = tabs[0].url;
-          setItems((prevItems) => {
-            return prevItems.map((item) => {
-              if (item.progress < 100 && currentUrl.includes(item.URL)) {
-                // Increment progress every minute
-                const [hours, minutes] = item.time.split(':');
-                const totalTime = parseInt(hours) * 60 + parseInt(minutes);
-                item.progress += (1 / (totalTime*60))*100;
-		            const newProgress = Math.round(Math.min(item.progress, 100) * 1000) / 1000;
-                return { ...item, progress: newProgress };
-              }
-              return item;
-            }); 
-          });
-        }
+      const currentUrl = window.location.href; // Get the current URL
+  
+      setItems((prevItems) => {
+        return prevItems.map((item) => {
+          if (item.progress < 100 && currentUrl.includes(item.URL)) {
+            // Increment progress
+            const [hours, minutes] = item.time.split(':');
+            const totalTime = parseInt(hours) * 60 + parseInt(minutes);
+            item.progress += (1 / (totalTime * 60)) * 100;
+            const newProgress = Math.round(Math.min(item.progress, 100) * 1000) / 1000;
+            return { ...item, progress: newProgress };
+          }
+          return item;
+        });
       });
-    }, 1000); // Update progress every seconds
+    }, 1000); // Update progress every second
   
     return () => clearInterval(intervalId); // Cleanup when component unmounts
   }, []);
+  
   
   
   const handleInput = (e) => {
