@@ -1,70 +1,171 @@
-# Getting Started with Create React App
+-------------------------------------------------------------------------------------------------# TaskTimeTracker[FR]----------------------------------------------------------------------------------------------
+![TaskTimeTracker Logo](/public/logo192.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TaskTimeTracker est une application web React conçue pour aider les utilisateurs à suivre leurs tâches quotidiennes ou non quotidiennes et à surveiller le temps passé sur les sites Web liés à ces tâches.
 
-## Available Scripts
+## Table des matières
 
-In the project directory, you can run:
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Fonctionnalités](#fonctionnalités)
+- [Structure des dossiers](#structure-des-dossiers)
+- [Contribution](#contribution)
+- [Licence](#licence)
+- [Remerciements](#remerciements)
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Pour commencer avec TaskTimeTracker, suivez ces étapes :
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clonez le dépôt :
+```
+git clone https://github.com/FlorianCliquet/TaskTimeTracker.git
+```
+2. Accédez au répertoire du projet :
+```
+cd TaskTimeTracker
+```
+3. Installez les dépendances :
+```
+npm install
+```
+4. Lancez le serveur de développement :
+```
+npm start
+```
+## Utilisation
 
-### `npm test`
+Une fois que le serveur de développement est en cours d'exécution, vous pouvez accéder à TaskTimeTracker dans votre navigateur en visitant `http://localhost:3000`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Fonctionnalités
 
-### `npm run build`
+- Ajouter de nouvelles tâches avec des titres, des descriptions, des horaires, des URL et des fréquences (quotidiennes ou hebdomadaires).
+- Modifier les tâches existantes.
+- Supprimer des tâches.
+- Suivre la progression des tâches, mise à jour automatiquement en fonction du temps passé sur les sites Web associés.
+- Réinitialiser la progression des tâches quotidiennement.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Structure des dossiers
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+TaskTimeTracker/
+│
+├── public/
+│ ├── favicon.ico
+│ ├── logo192.png
+│ ├── manifest.json
+│ ├── icon16.png
+│ ├── icon32.png
+│ └── icon128.png
+│
+├── src/
+│ ├── index.js
+│ ├── index.css
+│ ├── App.js
+│ ├── components/
+│ │ ├── Header.js
+│ │ └── Todo.jsx
+│ ├── logo.svg
+│ └── reportWebVitals.js
+│
+├── README.md
+└── .gitignore
+```
+## Contribution
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Les contributions à TaskTimeTracker sont les bienvenues ! Si vous avez des idées d'amélioration ou de nouvelles fonctionnalités, n'hésitez pas à ouvrir une issue ou à soumettre une pull request. Veuillez vous conformer au [Code de Conduite](CODE_OF_CONDUCT.md).
 
-### `npm run eject`
+## Licence
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+TaskTimeTracker est sous licence MIT. Consultez le fichier [MIT](LICENSE) pour plus de détails.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Remerciements
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Ce projet a été initialisé avec [Create React App](https://github.com/facebook/create-react-app).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-------------------------------------------------------------------------------------------------# TaskTimeTracker[EN]----------------------------------------------------------------------------------------------
+![TaskTimeTracker Logo](/public/logo192.png)
 
-## Learn More
+TaskTimeTracker is a React web application designed to help users track their daily or non-daily tasks and monitor the time spent on websites related to these tasks.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Table of Contents
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Folder Structure](#folder-structure)
+- [Contribution](#contribution)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
-### Code Splitting
+## Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To get started with TaskTimeTracker, follow these steps:
 
-### Analyzing the Bundle Size
+1. Clone the repository:
+```
+git clone https://github.com/FlorianCliquet/TaskTimeTracker.git
+```
+2. Navigate to the project directory:
+```
+cd TaskTimeTracker
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. Install dependencies:
+```
+npm install
+```
+4. Start the development server:
+```
+npm start
+```
+## Usage
 
-### Making a Progressive Web App
+Once the development server is running, you can access TaskTimeTracker in your browser by visiting `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Features
 
-### Advanced Configuration
+- Add new tasks with titles, descriptions, times, URLs, and frequencies (daily or weekly).
+- Edit existing tasks.
+- Delete tasks.
+- Track progress on tasks, updating automatically based on time spent on associated websites.
+- Reset task progress daily.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Folder Structure
 
-### Deployment
+```
+TaskTimeTracker/
+│
+├── public/
+│ ├── favicon.ico
+│ ├── logo192.png
+│ ├── manifest.json
+│ ├── icon16.png
+│ ├── icon32.png
+│ └── icon128.png
+│
+├── src/
+│ ├── index.js
+│ ├── index.css
+│ ├── App.js
+│ ├── components/
+│ │ ├── Header.js
+│ │ └── Todo.jsx
+│ ├── logo.svg
+│ └── reportWebVitals.js
+│
+├── README.md
+└── .gitignore
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Contribution
 
-### `npm run build` fails to minify
+Contributions to TaskTimeTracker are welcome! If you have any ideas for improvements or new features, feel free to open an issue or submit a pull request. Please adhere to the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+
+TaskTimeTracker is licensed under the MIT License. See the [MIT](LICENSE) file for details.
+
+## Acknowledgments
+
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
